@@ -1,0 +1,34 @@
+{% extends "projects_site/base.html" %}
+{% block header %} {{project.project_name}} {% endblock %}
+{% block content %}
+<div>
+        <a href="{% url 'projects:homepage' %}" type="button" class="btn homepage-btn fs-5 mx-5 my-3"><i
+                        class="fa-solid fa-house"></i>
+                Homepage </a>
+</div>
+
+<div class="text-center">
+        <p class="lead fw-normal mx-4 mt-3">{{ project.project_description }}</p>
+        {% if project.website_link %}
+        <p class="fw-bold">View code files below in the repl or follow link to github. Will not run in the repl follow
+                link to
+                site instead to
+                see it in action.</p>
+        {% else %}
+        <p class="fw-bold">View code files below in the repl or follow link to github. Run the repl to see the code in
+                action.</p>
+        {% endif %}
+        <div>
+                <a href="{{ project.github_link }}" type="button" class="btn btn-default github-btn mb-3 mx-1"
+                        target="_blank"><i class="fa-brands fa-github" aria-hidden="true"></i> Github Link</a>
+                {% if project.website_link %}
+                <a href="{{ project.website_link }}" type="button" class="btn btn-outline-primary mb-3 mx-1"
+                        target="_blank"></i>Visit Site</a>
+                {% endif %}
+        </div>
+        <div>
+                <iframe frameborder="0" width="90%" height="800px" src="{{ project.replit_link }}"></iframe>
+        </div>
+</div>
+
+{% endblock %}

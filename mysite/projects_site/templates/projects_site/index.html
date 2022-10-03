@@ -1,0 +1,32 @@
+{% extends "projects_site/base.html" %}
+{% block header %} Projects {% endblock %}
+{% block content %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+            {% for project in all_projects %}
+            <div class="col mb-5">
+                <div class="card">
+                    {% if project.img_path %}
+                    {% load static %} <img class="card-img-top img-fluid" src="{% static project.img_path %}"
+                        alt="..." />
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bold">{{ project.project_name }}</h5>
+                            <h6>{{ project.language }} <i class='{{ project.language_icon }}'></i></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-primary mt-auto"
+                                href="{% url 'projects:project_page' project.id %}">View Project</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
